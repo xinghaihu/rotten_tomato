@@ -10,4 +10,5 @@
 
 @interface MovieDetailViewController : UIViewController
 
+@property (nonatomic, strong) NSDictionary *movie;
 @end

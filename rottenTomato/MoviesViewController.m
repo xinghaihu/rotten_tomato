@@ -9,6 +9,7 @@
 #import "MoviesViewController.h"
 #import "MovieCell.h"
 #import "UIImageView+AFNetworking.h"
+#import "MovieDetailViewController.h"
 
 @interface MoviesViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -53,6 +54,12 @@
     cell.synopsisLabel.text = movie[@"synopsis"];
     [cell.posterView setImageWithURL:[NSURL URLWithString:[movie valueForKeyPath:@"posters.thumbnail"]]];
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    MovieDetailViewController *mdvc = [[MovieDetailViewController alloc] init];
+    mdvc.movie = self.movies[indexPath.row];
+    [self.navigationController pushViewController:mdvc animated:YES];
 }
 
 

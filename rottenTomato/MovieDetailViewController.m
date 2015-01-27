@@ -17,8 +17,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = self.movie[@"title"];
     self.movieDetailTableView.dataSource = self;
     self.movieDetailTableView.delegate = self;
+    self.movieDetailTableView.rowHeight = 600;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -36,7 +38,11 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell* cell = [[UITableViewCell alloc] init];
-    cell.textLabel.text = @"hello";
+    cell.textLabel.text = self.movie[@"synopsis"];
+    NSURL *imageURL = [NSURL URLWithString:[self.movie valueForKeyPath:@"posters.detailed"]];
+    NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
+    UIImage *image = [UIImage imageWithData:imageData];
+    cell.backgroundColor = [[UIColor alloc] initWithPatternImage:image];
     return cell;
 }
 
