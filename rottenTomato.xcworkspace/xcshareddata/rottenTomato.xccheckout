@@ -20,7 +20,7 @@
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>0696084ABE1E4723CBD784461E778E569A032281</key>
-		<string>../../..</string>
+		<string>../..</string>
 		<key>0DA9EC97B480C1FDFF5E8873E84D12ED0F0A42ED</key>
 		<string>..</string>
 	</dict>
@@ -38,7 +38,7 @@
 			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>0696084ABE1E4723CBD784461E778E569A032281</string>
 			<key>IDESourceControlWCCName</key>
-			<string>..</string>
+			<string></string>
 		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>

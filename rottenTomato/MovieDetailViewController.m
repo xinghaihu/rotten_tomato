@@ -18,6 +18,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = self.movie[@"title"];
+    
+    NSURL *imageURL = [NSURL URLWithString:[self.movie valueForKeyPath:@"posters.original"]];
+    NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
+    UIImage *image = [UIImage imageWithData:imageData];
+    UIImageView *tmpImageView = [[UIImageView alloc] initWithImage:image];
+    [tmpImageView setFrame:self.movieDetailTableView.frame];
+    self.movieDetailTableView.backgroundView = tmpImageView;
+    
     self.movieDetailTableView.dataSource = self;
     self.movieDetailTableView.delegate = self;
     self.movieDetailTableView.rowHeight = 600;
@@ -38,13 +46,18 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell* cell = [[UITableViewCell alloc] init];
+    cell.backgroundColor = [UIColor colorWithRed:.8 green:.8 blue:.8 alpha: 0.7];
     cell.textLabel.text = self.movie[@"synopsis"];
-    NSURL *imageURL = [NSURL URLWithString:[self.movie valueForKeyPath:@"posters.detailed"]];
-    NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
-    UIImage *image = [UIImage imageWithData:imageData];
-    cell.backgroundColor = [[UIColor alloc] initWithPatternImage:image];
+    cell.textLabel.textAlignment =NSTextAlignmentLeft;
+    cell.textLabel.numberOfLines = 0;
+    [cell.textLabel setFont:[UIFont fontWithName:@"System" size:25]];
     return cell;
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self.movieDetailTableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
 
 /*
 #pragma mark - Navigation
